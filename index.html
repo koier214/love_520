@@ -3,55 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的页面</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .container {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        
-        p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        
-        .heart {
-            color: #ff6b6b;
-            font-size: 4em;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-    </style>
+    <title>宝宝等我~</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>欢迎来到我的页面</h1>
-        <p>扫码成功！你已通过二维码访问此页面。</p>
+    <div class="rain-container">
+        <div class="raindrop" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="raindrop" style="left: 20%; animation-delay: 0.5s;"></div>
+        <div class="raindrop" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="raindrop" style="left: 45%; animation-delay: 0.3s;"></div>
+        <div class="raindrop" style="left: 55%; animation-delay: 0.8s;"></div>
+        <div class="raindrop" style="left: 70%; animation-delay: 0.2s;"></div>
+        <div class="raindrop" style="left: 80%; animation-delay: 0.6s;"></div>
+        <div class="raindrop" style="left: 90%; animation-delay: 0.9s;"></div>
     </div>
+    
+    <div class="cloud-container">
+        <div class="cloud cloud1">☁️</div>
+        <div class="cloud cloud2">☁️</div>
+        <div class="cloud cloud3">☁️</div>
+    </div>
+
+    <div class="container">
+        <div class="heart-container">
+            <div class="heart">💗</div>
+            <div class="heart heart2">💓</div>
+            <div class="heart heart3">💕</div>
+        </div>
+        <h1>宝宝等我</h1>
+        <p class="main-text">我现在就把武汉下的雨</p>
+        <p class="main-text highlight">给吸回重庆~</p>
+        <p class="blow-text">呼呼呼~~~ 💨</p>
+        <div class="wind">🌬️</div>
+    </div>
+
+    <div class="float-hearts">
+        <span class="float-heart">❤️</span>
+        <span class="float-heart">💖</span>
+        <span class="float-heart">💝</span>
+        <span class="float-heart">💗</span>
+        <span class="float-heart">💕</span>
+    </div>
+    
+    <script src="index.js"></script>
 </body>
 </html>
