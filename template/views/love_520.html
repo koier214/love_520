@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💕 樱花祈愿 💕</title>
     <style>
+        /* ===== 基础重置样式 ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            min-height: 100vh;
             background: linear-gradient(180deg, #fff0f3 0%, #ffe4ec 30%, #ffd6e7 60%, #ffcce0 100%);
-            overflow-x: hidden;
             position: relative;
         }
         
+        /* ===== 桌面端样式 ===== */
         /* 背景装饰 */
         .bg-decoration {
             position: fixed;
@@ -91,18 +97,24 @@
             50% { box-shadow: 0 8px 35px rgba(255, 107, 149, 0.6); }
         }
         
-        /* 樱花容器 */
+        /* 樱花容器 - 桌面端 */
         .flowers-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 180px);
+            min-height: calc(100vh - 200px);
             padding: 20px;
             position: relative;
             z-index: 10;
         }
         
-        /* 樱花花朵 */
+        .flowers-wrapper {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        
+        /* 樱花花朵 - 桌面端 */
         .flower {
             position: absolute;
             cursor: pointer;
@@ -329,6 +341,227 @@
             0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
             50% { transform: translateY(-40px) rotate(15deg); opacity: 0.7; }
         }
+        
+        /* ===== 移动端CSS框架 (max-width: 768px) ===== */
+        @media (max-width: 768px) {
+            /* 基础重置 - 确保无滚动条 */
+            html, body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            
+            /* 隐藏背景装饰 */
+            .bg-decoration {
+                display: none;
+            }
+            
+            /* 隐藏底部爱心装饰 */
+            .hearts {
+                display: none;
+            }
+            
+            /* 隐藏底部提示 */
+            .hint {
+                display: none;
+            }
+            
+            /* 调整标题区域 */
+            .title-section {
+                padding: 25px 15px 10px;
+                padding-top: calc(25px + env(safe-area-inset-top));
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .subtitle {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+            
+            /* 520日期标签 */
+            .date-badge {
+                top: calc(12px + env(safe-area-inset-top));
+                right: 12px;
+                padding: 5px 12px;
+                font-size: 10px;
+                gap: 4px;
+            }
+            
+            /* 樱花容器 - 全屏布局 */
+            .flowers-container {
+                width: 100%;
+                height: calc(100vh - 100px - env(safe-area-inset-top));
+                min-height: 0;
+                padding: 10px;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            /* 花朵包装器 - 自适应尺寸 */
+            .flowers-wrapper {
+                position: relative;
+                width: 100%;
+                max-width: 360px;
+                height: calc(100vh - 120px - env(safe-area-inset-top));
+                max-height: 420px;
+            }
+            
+            /* 樱花花朵 - 移动端专用样式 */
+            .flower {
+                position: absolute;
+                cursor: pointer;
+                filter: grayscale(100%);
+                opacity: 0.6;
+                transition: all 0.3s ease;
+                z-index: 10;
+                /* 根据屏幕宽度动态调整 */
+                font-size: 24px;
+            }
+            
+            .flower:active {
+                transform: scale(1.2);
+                filter: grayscale(30%);
+                opacity: 0.9;
+            }
+            
+            .flower.active {
+                filter: grayscale(0%);
+                opacity: 1;
+                animation: bloom 1.5s ease-in-out infinite;
+            }
+            
+            /* 弹窗 - 移动端优化 */
+            .modal-overlay {
+                background: rgba(255, 196, 214, 0.8);
+            }
+            
+            .modal {
+                padding: 25px 20px;
+                width: 92%;
+                max-width: 320px;
+                margin: 0 10px;
+            }
+            
+            .modal h3 {
+                font-size: 16px;
+                margin-bottom: 18px;
+            }
+            
+            .modal textarea {
+                height: 100px;
+                padding: 14px;
+                font-size: 13px;
+            }
+            
+            .btn {
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
+        
+        /* 小屏手机适配 (max-width: 480px) */
+        @media (max-width: 480px) {
+            .title-section {
+                padding: 20px 10px 8px;
+                padding-top: calc(20px + env(safe-area-inset-top));
+            }
+            
+            .title {
+                font-size: 18px;
+            }
+            
+            .subtitle {
+                font-size: 9px;
+            }
+            
+            .date-badge {
+                top: calc(10px + env(safe-area-inset-top));
+                right: 10px;
+                padding: 4px 10px;
+                font-size: 9px;
+            }
+            
+            .flowers-wrapper {
+                max-width: 320px;
+                height: calc(100vh - 110px - env(safe-area-inset-top));
+                max-height: 380px;
+            }
+            
+            .flower {
+                font-size: 22px;
+            }
+            
+            .modal {
+                padding: 22px 18px;
+                width: 95%;
+                max-width: 290px;
+            }
+            
+            .modal h3 {
+                font-size: 15px;
+            }
+            
+            .modal textarea {
+                height: 90px;
+                font-size: 12px;
+            }
+            
+            .btn {
+                padding: 11px;
+                font-size: 12px;
+            }
+        }
+        
+        /* 超小屏手机适配 (max-width: 360px) */
+        @media (max-width: 360px) {
+            .title-section {
+                padding: 18px 8px 6px;
+            }
+            
+            .title {
+                font-size: 16px;
+            }
+            
+            .subtitle {
+                font-size: 8px;
+            }
+            
+            .date-badge {
+                padding: 3px 8px;
+                font-size: 8px;
+            }
+            
+            .flowers-wrapper {
+                max-width: 280px;
+                height: calc(100vh - 100px - env(safe-area-inset-top));
+                max-height: 340px;
+            }
+            
+            .flower {
+                font-size: 20px;
+            }
+            
+            .modal {
+                padding: 20px 15px;
+                max-width: 260px;
+            }
+            
+            .modal h3 {
+                font-size: 14px;
+            }
+            
+            .modal textarea {
+                height: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -351,8 +584,10 @@
     <div class="hearts" id="heartsContainer"></div>
     
     <!-- 樱花容器 -->
-    <div class="flowers-container" id="flowersContainer">
-        <!-- 樱花将通过JS生成 -->
+    <div class="flowers-container">
+        <div class="flowers-wrapper" id="flowersContainer">
+            <!-- 樱花将通过JS生成 -->
+        </div>
     </div>
     
     <!-- 祈福弹窗 -->
@@ -376,31 +611,67 @@
     <script>
         // 花朵位置数据（固定，确保每次刷新位置一致）
         const flowerPositions = [];
+        
+        // 判断是否为移动端
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+        
         (function generateFlowerPositions() {
-            const rows = 4;
-            const cols = 6;
-            const spacingX = 90;
-            const spacingY = 110;
-            const startX = -220;
-            const startY = -160;
-            
-            // 使用固定种子生成伪随机数
-            let seed = 5201314;
-            const random = () => {
-                seed = (seed * 9301 + 49297) % 233280;
-                return seed / 233280;
-            };
-            
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const offsetX = (random() - 0.5) * 50;
-                    const offsetY = (random() - 0.5) * 60;
-                    
-                    const x = startX + col * spacingX + offsetX;
-                    const y = startY + row * spacingY + offsetY;
-                    
-                    if (random() > 0.15) {
+            if (isMobile()) {
+                // 移动端专用位置 - 紧凑布局，确保全部显示在可视区域内
+                // 3行 x 4列布局
+                const rows = 3;
+                const cols = 4;
+                const spacingX = 70;  // 减小水平间距
+                const spacingY = 85;  // 减小垂直间距
+                const startX = -120;  // 居中起始位置
+                const startY = -110;  // 居中起始位置
+                
+                let seed = 5201314;
+                const random = () => {
+                    seed = (seed * 9301 + 49297) % 233280;
+                    return seed / 233280;
+                };
+                
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const offsetX = (random() - 0.5) * 20;
+                        const offsetY = (random() - 0.5) * 25;
+                        
+                        const x = startX + col * spacingX + offsetX;
+                        const y = startY + row * spacingY + offsetY;
+                        
+                        // 移动端不跳过任何花朵，确保数量足够且分布均匀
                         flowerPositions.push({ x, y });
+                    }
+                }
+            } else {
+                // 桌面端布局
+                const rows = 4;
+                const cols = 6;
+                const spacingX = 90;
+                const spacingY = 110;
+                const startX = -220;
+                const startY = -160;
+                
+                let seed = 5201314;
+                const random = () => {
+                    seed = (seed * 9301 + 49297) % 233280;
+                    return seed / 233280;
+                };
+                
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const offsetX = (random() - 0.5) * 50;
+                        const offsetY = (random() - 0.5) * 60;
+                        
+                        const x = startX + col * spacingX + offsetX;
+                        const y = startY + row * spacingY + offsetY;
+                        
+                        if (random() > 0.15) {
+                            flowerPositions.push({ x, y });
+                        }
                     }
                 }
             }
@@ -469,6 +740,7 @@
         function createFlowers() {
             const container = document.getElementById('flowersContainer');
             const wishes = getWishes();
+            const mobile = isMobile();
             
             flowerPositions.forEach((pos, index) => {
                 const flowerEl = document.createElement('div');
@@ -476,7 +748,14 @@
                 flowerEl.style.left = `calc(50% + ${pos.x}px)`;
                 flowerEl.style.top = `calc(50% + ${pos.y}px)`;
                 flowerEl.innerHTML = '<span>🌸</span>';
-                flowerEl.style.fontSize = (30 + (index * 5) % 20) + 'px';
+                
+                // 移动端使用统一稍小的花朵尺寸，桌面端使用渐变尺寸
+                if (mobile) {
+                    flowerEl.style.fontSize = '28px';
+                } else {
+                    flowerEl.style.fontSize = (30 + (index * 5) % 20) + 'px';
+                }
+                
                 flowerEl.onclick = () => openWishModal(index);
                 
                 // 如果有祝福，点亮樱花（粉色）
